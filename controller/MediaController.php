@@ -10,18 +10,18 @@ function mediaPage() {
 
     if (isset( $_GET['media'] )):
         detailPage($_GET['media']);
-    endif;
-
-    $search = isset( $_GET['title'] ) ? $_GET['title'] : null;
-
-    # Todo, get this filterMedias to work
-    if (isset( $_GET['title'] )):
-        $medias = Media::filterMedias( $search );
     else:
-        $medias = Media::getAllMedia();
-    endif;
+        $search = isset( $_GET['title'] ) ? $_GET['title'] : null;
 
-    require('view/mediaListView.php');
+        # Todo, get this filterMedias to work
+        if (isset( $_GET['title'] )):
+            $medias = Media::filterMedias( $search );
+        else:
+            $medias = Media::getAllMedia();
+        endif;
+
+        require('view/mediaListView.php');
+    endif;
 }
 
 /****************************
