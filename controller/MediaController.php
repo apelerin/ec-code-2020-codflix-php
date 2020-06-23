@@ -8,15 +8,29 @@ require_once( 'model/media.php' );
 
 function mediaPage() {
 
-  $search = isset( $_GET['title'] ) ? $_GET['title'] : null;
+    if (isset( $_GET['media'] )):
+        detailPage($_GET['media']);
+    endif;
 
-# Todo, get this filterMedias to work
-  if ($search != null):
-      $medias = Media::filterMedias( $search );
-  else:
-      $medias = Media::getAllMedia();
-  endif;
+    $search = isset( $_GET['title'] ) ? $_GET['title'] : null;
 
-  require('view/mediaListView.php');
+    # Todo, get this filterMedias to work
+    if (isset( $_GET['title'] )):
+        $medias = Media::filterMedias( $search );
+    else:
+        $medias = Media::getAllMedia();
+    endif;
 
+    require('view/mediaListView.php');
+}
+
+/****************************
+* ----- LOAD MEDIA PAGE -----
+****************************/
+
+
+function detailPage( $mediaId ) {
+
+    $media = Media::getMediaById($mediaId);
+    require('view/detailMediaView.php');
 }
