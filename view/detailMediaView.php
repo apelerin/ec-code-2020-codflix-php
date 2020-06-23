@@ -7,7 +7,21 @@
     <div><?= $media['status']?></div>
     <div><?= $media['release_date']?></div>
     <div><?= $media['summary']?></div>
-    <div><?= $media['trailer_url']?></div>
+
+    <?php if ($media['type'] == "Film"):
+            if (!isset($_GET['play'])): ?>
+    <div class="button_cont" align="center">
+        <a class="button_play" href="index.php?media=<?= $media['id']; ?>&play=true">
+            <span>Play'Fix</a>
+    </div>
+    <div>
+    <?php else:
+                echo '<iframe allowfullscreen="" frameborder="0"src="' . $media['trailer_url'] . '" ></iframe>';
+                echo '<a class="button_play" href="index.php?media=' . $media['id'] . '"><span>Stop</a>';
+            endif;
+    endif; ?>
+
+    </div>
 </div>
 
 <?php $content = ob_get_clean(); ?>
