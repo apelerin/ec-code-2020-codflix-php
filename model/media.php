@@ -103,4 +103,19 @@ class Media {
 
   }
 
+    public static function getAllMedia() {
+
+        // Open database connection
+        $db   = init_db();
+
+        $req  = $db->prepare( "SELECT * FROM media ORDER BY release_date DESC" );
+        $req->execute();
+
+        // Close databse connection
+        $db   = null;
+
+        return $req->fetchAll();
+
+    }
+
 }
