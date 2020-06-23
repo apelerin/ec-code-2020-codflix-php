@@ -1,0 +1,9 @@
+/**********
+* Detailed media page rules
+**********/
+
+.mediaD-title {
+    font-size: 48px;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+}
