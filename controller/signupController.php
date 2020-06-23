@@ -22,3 +22,25 @@ function signupPage() {
 /***************************
 * ----- SIGNUP FUNCTION -----
 ***************************/
+
+function signup( $post ) {
+    $data                   = new stdClass();
+    $data->email            = $post['email'];
+    $data->password         = $post['password'];
+    $data->password_confirm = $post['password_confirm'];
+
+    # Check if passwords are matching
+    try {
+        $user               = new User( $data );
+        $user->createUser();
+
+        # Todo add a popup to signal the creation of the user
+        # Todo mailing to confirm the account
+        header( 'location: index.php ');
+    }
+    catch (Exception $e) {
+        $error_msg = $e->getMessage();
+    }
+
+    require('view/auth/signupView.php');
+}

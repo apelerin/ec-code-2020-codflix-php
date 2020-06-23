@@ -15,14 +15,15 @@ if ( isset( $_GET['action'] ) ):
 
     case 'login':
 
-      if ( !empty( $_POST ) ) login( $_POST );
-      else loginPage();
+        if ( !empty( $_POST ) ) login( $_POST );
+        else loginPage();
 
     break;
 
     case 'signup':
 
-      signupPage();
+        if ( !empty( $_POST ) ) signup( $_POST );
+        else signupPage();
 
     break;
 
