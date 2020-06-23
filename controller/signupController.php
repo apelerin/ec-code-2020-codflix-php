@@ -31,7 +31,7 @@ function signup( $post ) {
 
     # Check if passwords are matching
     try {
-        $user               = new User( $data );
+        $user = new User( $data );
         $user->createUser();
 
         # Todo add a popup to signal the creation of the user
