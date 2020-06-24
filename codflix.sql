@@ -171,6 +171,8 @@ COMMIT;
 
 -- --------------------------------------------------------
 
+-- SQL ADDED BY APELERIN
+
 --
 -- Dumping testing data for table `media`
 --
@@ -178,7 +180,53 @@ COMMIT;
 INSERT INTO `media` (`id`, `genre_id`, `title`, `type`, `status`, `release_date`, `summary`, `trailer_url`) VALUES
 (1, 1, 'Pacific Rim', 'Film', 'Publié', '1993-05-13', 'Lors de l''exode des populations civiles françaises en juin 1940, la petite Paulette et ses parents fuient Paris. Leur voiture tombe en panne et ils doivent continuer à pied. Au moment où des avions allemands mitraillent la colonne de réfugiés, le chien de Paulette prend peur et dans le chaos, Paulette voit mourir ses parents. Elle est recueillie par un couple âgé qui, constatant que le chien que porte l''enfant est mort, le jette à la rivière. Paulette court retrouver son chien. Cette recherche l''amène à rencontrer un jeune paysan, Michel, qui l''invite chez lui.', 'https://www.youtube.com/embed/5guMumPFBag'),
 (2, 2, 'Halloween', 'Film', 'Publié', '1998-08-17', 'Jack Crawford envoie Clarice auprès du docteur Hannibal Lecter alias « Hannibal le Cannibale », éminent psychiatre emprisonné depuis huit ans dans une cellule de très haute sécurité de l''hôpital psychiatrique de Baltimore dirigé par le docteur Chilton. Jack Crawford espère que Clarice pourra en retirer des informations capitales sur Buffalo Bill.', 'https://www.youtube.com/embed/5guMumPFBag'),
-(3, 3, 'Star trek', 'Film', 'Publié', '2013-01-01', 'Randal, triste du départ de son meilleur ami, organise une fête en son honneur et veut réhabiliter une expression, qui selon lui, n''est pas raciste. Becky, après un cours de danse pour Dante, apprend que ce dernier est amoureux d''elle. De plus, elle lui annonce qu''elle est enceinte de lui. Dante est alors balancé entre partir avec Emma et démarrer une nouvelle vie ou rester avec Becky, qu''il aime depuis un moment.', 'https://www.youtube.com/embed/5guMumPFBag');
+(3, 3, 'Star trek', 'Film', 'Publié', '2013-01-01', 'Randal, triste du départ de son meilleur ami, organise une fête en son honneur et veut réhabiliter une expression, qui selon lui, n''est pas raciste. Becky, après un cours de danse pour Dante, apprend que ce dernier est amoureux d''elle. De plus, elle lui annonce qu''elle est enceinte de lui. Dante est alors balancé entre partir avec Emma et démarrer une nouvelle vie ou rester avec Becky, qu''il aime depuis un moment.', 'https://www.youtube.com/embed/5guMumPFBag'),
+(4, 2, 'Little Misfortune', 'Série', 'Publié', '2019-12-05', 'Misfortune Ramirez Hernandez, an imaginative 8-year-old, seeks the prize of Eternal Happiness, as a gift to her Mommy. Led by her new friend, Mr. Voice, they venture into the woods, where mysteries are unraveled and a little bit of bad luck unfolds.', 'https://www.youtube.com/embed/ScO3SsbcFSU');
+
+--
+-- Table structure for table `show_episode`
+--
+
+DROP TABLE IF EXISTS `show_episode`;
+CREATE TABLE `show_episode` (
+  `id` int(11) NOT NULL,
+  `media_id` int(11) NOT NULL,
+  `season` int(11) NOT NULL,
+  `episode` int(11) NOT NULL,
+  `release_date` date NOT NULL,
+  `stream_url` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Add primary key to show_episode
+--
+
+ALTER TABLE `show_episode`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for table `show_episode`
+--
+
+ALTER TABLE `show_episode`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraint for table `show_episode`
+--
+
+ALTER TABLE `show_episode`
+  ADD CONSTRAINT `show_episode_fk_genre_id` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Dumping testing data for table `show_episode`
+--
+
+INSERT INTO `show_episode` (`id`, `media_id`, `season`, `episode`, `release_date`, `stream_url`) VALUES
+(1, 4, 1, 1, '2019-12-05', 'https://www.youtube.com/embed/EdS2kCUGvfo'),
+(2, 4, 1, 2, '2019-12-25', 'https://www.youtube.com/embed/KzW727RY-ig'),
+(3, 4, 2, 1, '2020-02-15', 'https://www.youtube.com/embed/HBNGoDZURBE'),
+(4, 4, 2, 2, '2019-03-05', 'https://www.youtube.com/embed/4MYpGMx6zUY');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
