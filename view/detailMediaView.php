@@ -2,13 +2,14 @@
 
 <h3 class="mediaD-title"><?= $media['title']; ?></h3>
 
-<div class="info-media">
-    <div><?= $genre['name']?></div>
-    <div><?= $media['type']?></div>
-    <div><?= $media['status']?></div>
-    <div><?= $media['release_date']?></div>
-    <div><?= $media['summary']?></div>
-
+<div>
+    <div class="media-info">
+        <div>Genre: <?= $genre['name']?></div>
+        <div>Type: <?= $media['type']?></div>
+        <div>État: <?= $media['status']?></div>
+        <div>Date de parution: <?= $media['release_date']?></div>
+        <div><?= $media['summary']?></div>
+    </div>
     <?php
     if (isset($_GET['current_play'])):
         echo '<div><iframe allowfullscreen="" frameborder="0"src="' . $current_episode['stream_url'] . '" ></iframe></div>';
