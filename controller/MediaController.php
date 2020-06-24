@@ -34,6 +34,7 @@ function detailPage( $mediaId ) {
     $episodes = Media::getShowEpisodes($media['id']);
     $genre = Media::getGenreById($media['genre_id']);
 
+    # Get the episode and a string concatenation like: 'season number' + 'episode number' to compare in the view
     if (isset($_GET['current_play'])):
         $array_season_episode = explode('E', $_GET['current_play']);
         $current_episode = Media::getShowEpisodesBySeasonAndEpisode(ltrim($array_season_episode[0], 'S'), $array_season_episode[1]);

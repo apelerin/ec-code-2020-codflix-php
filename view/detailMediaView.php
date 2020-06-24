@@ -11,6 +11,7 @@
         <div><?= $media['summary']?></div>
     </div>
     <?php
+
     if (isset($_GET['current_play'])):
         echo '<div><iframe allowfullscreen="" frameborder="0"src="' . $current_episode['stream_url'] . '" ></iframe></div>';
     endif;
