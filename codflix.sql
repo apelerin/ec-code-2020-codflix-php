@@ -191,6 +191,9 @@ DROP TABLE IF EXISTS `show_episode`;
 CREATE TABLE `show_episode` (
   `id` int(11) NOT NULL,
   `media_id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `summary` longtext NOT NULL,
   `season` int(11) NOT NULL,
   `episode` int(11) NOT NULL,
   `release_date` date NOT NULL,
@@ -222,11 +225,11 @@ ALTER TABLE `show_episode`
 -- Dumping testing data for table `show_episode`
 --
 
-INSERT INTO `show_episode` (`id`, `media_id`, `season`, `episode`, `release_date`, `stream_url`) VALUES
-(1, 4, 1, 1, '2019-12-05', 'https://www.youtube.com/embed/EdS2kCUGvfo'),
-(2, 4, 1, 2, '2019-12-25', 'https://www.youtube.com/embed/KzW727RY-ig'),
-(3, 4, 2, 1, '2020-02-15', 'https://www.youtube.com/embed/HBNGoDZURBE'),
-(4, 4, 2, 2, '2019-03-05', 'https://www.youtube.com/embed/4MYpGMx6zUY');
+INSERT INTO `show_episode` (`id`, `media_id`, `duration`, `summary`, `season`, `episode`, `release_date`, `stream_url`) VALUES
+(1, 4, 120, 'A brave Scottish general named Macbeth receives a prophecy from a trio of witches that one day he will become King of Scotland.', 1, 1, '2019-12-05', 'https://www.youtube.com/embed/EdS2kCUGvfo'),
+(2, 4, 1600, 'A brave Scottish general named Macbeth receives a prophecy from a trio of witches that one day he will become King of Scotland.', 1, 2, '2019-12-25', 'https://www.youtube.com/embed/KzW727RY-ig'),
+(3, 4, 650, 'A brave Scottish general named Macbeth receives a prophecy from a trio of witches that one day he will become King of Scotland.', 2, 1, '2020-02-15', 'https://www.youtube.com/embed/HBNGoDZURBE'),
+(4, 4, 450, 'A brave Scottish general named Macbeth receives a prophecy from a trio of witches that one day he will become King of Scotland.', 2, 2, '2019-03-05', 'https://www.youtube.com/embed/4MYpGMx6zUY');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
