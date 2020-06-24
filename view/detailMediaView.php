@@ -23,7 +23,24 @@
             echo '<a class="button_play" href="index.php?media=' . $media['id'] . '"><span>Stop</a>';
         endif;
     else:
+        foreach ($episodes as $episode):
+            $param = $media['id'] . '&current_play=S' . $episode['season'] . 'E' . $episode['episode'];
+            if (isset($_GET['current_play']) && $season_episode == $episode['season'] . $episode['episode']):
+                $btn_text = 'Épisode en visionnage';
+            else:
+                $btn_text = 'Season ' . $episode['season'] . ' Episode ' . $episode['episode'];
+            endif;
+                ?>
+            <div class="button_cont" align="center">
+                <a class="button_play" href="index.php?media=<?= $param ?>">
+                    <span><?= $btn_text ?>
+            </a>
 
+        <?php
+        endforeach;
+        if (isset($_GET['current_play'])):
+            echo '<div><iframe allowfullscreen="" frameborder="0"src="' . $current_episode['stream_url'] . '" ></iframe></div>';
+        endif;
     endif; ?>
 
     </div>

@@ -32,5 +32,13 @@ function mediaPage() {
 function detailPage( $mediaId ) {
 
     $media = Media::getMediaById($mediaId);
+    $episodes = Media::getShowEpisodes($media['id']);
+
+    if (isset($_GET['current_play'])):
+        $array_season_episode = explode('E', $_GET['current_play']);
+        $current_episode = Media::getShowEpisodesBySeasonAndEpisode(ltrim($array_season_episode[0], 'S'), $array_season_episode[1]);
+        $season_episode = ltrim($array_season_episode[0], 'S') . $array_season_episode[1];
+    endif;
+
     require('view/detailMediaView.php');
 }

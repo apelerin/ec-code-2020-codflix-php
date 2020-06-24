@@ -133,4 +133,34 @@ class Media {
 
     }
 
+    public static function getShowEpisodes( $media_id ) {
+
+        // Open database connection
+        $db   = init_db();
+
+        $req  = $db->prepare( "SELECT * FROM show_episode WHERE media_id=" . $media_id );
+        $req->execute();
+
+        // Close databse connection
+        $db   = null;
+
+        return $req->fetchAll();
+
+    }
+
+    public static function getShowEpisodesBySeasonAndEpisode( $season, $episode ) {
+
+        // Open database connection
+        $db   = init_db();
+
+        $req  = $db->prepare( "SELECT * FROM show_episode WHERE season=" . $season . " AND episode=" . $episode);
+        $req->execute();
+
+        // Close databse connection
+        $db   = null;
+
+        return $req->fetch();
+
+    }
+
 }
