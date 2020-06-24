@@ -37,7 +37,7 @@ function detailPage( $mediaId ) {
     # Get the episode and a string concatenation like: 'season number' + 'episode number' to compare in the view
     if (isset($_GET['current_play'])):
         $array_season_episode = explode('E', $_GET['current_play']);
-        $current_episode = Media::getShowEpisodesBySeasonAndEpisode(ltrim($array_season_episode[0], 'S'), $array_season_episode[1]);
+        $current_episode = Media::getShowEpisodesBySeasonEpisodeAndMedia(ltrim($array_season_episode[0], 'S'), $array_season_episode[1], $media['id']);
         $season_episode = ltrim($array_season_episode[0], 'S') . $array_season_episode[1];
     endif;
 

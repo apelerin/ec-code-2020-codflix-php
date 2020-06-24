@@ -84,9 +84,9 @@ class Media {
     return $this->trailer_url;
   }
 
-  /***************************
-  * -------- GET LIST --------
-  ***************************/
+  /**************************************
+  * -------- GET FILTERED MEDIAS --------
+  ***************************************/
 
   public static function filterMedias( $title ) {
 
@@ -96,12 +96,16 @@ class Media {
     $req  = $db->prepare( "SELECT * FROM media WHERE title='" . $title . "' ORDER BY release_date DESC" );
     $req->execute();
 
-    // Close databse connection
+    // Close database connection
     $db   = null;
 
     return $req->fetchAll();
 
   }
+
+    /**********************************
+     * -------- GET ALL MEDIAS --------
+     **********************************/
 
     public static function getAllMedia() {
 
@@ -111,12 +115,16 @@ class Media {
         $req  = $db->prepare( "SELECT * FROM media ORDER BY release_date DESC" );
         $req->execute();
 
-        // Close databse connection
+        // Close database connection
         $db   = null;
 
         return $req->fetchAll();
 
     }
+
+    /************************************
+     * -------- GET MEDIAS BY ID --------
+     ************************************/
 
     public static function getMediaById( $id ) {
 
@@ -126,12 +134,16 @@ class Media {
         $req  = $db->prepare( "SELECT * FROM media WHERE id = ". $id );
         $req->execute();
 
-        // Close databse connection
+        // Close database connection
         $db   = null;
 
         return $req->fetch();
 
     }
+
+    /*******************************************
+     * -------- GET EPISODE BY MEDIA ID --------
+     *******************************************/
 
     public static function getShowEpisodes( $media_id ) {
 
@@ -141,27 +153,35 @@ class Media {
         $req  = $db->prepare( "SELECT * FROM show_episode WHERE media_id=" . $media_id );
         $req->execute();
 
-        // Close databse connection
+        // Close database connection
         $db   = null;
 
         return $req->fetchAll();
 
     }
 
-    public static function getShowEpisodesBySeasonAndEpisode( $season, $episode ) {
+    /***************************************
+     * -------- GET FILTERED MEDIAS --------
+     ***************************************/
+
+    public static function getShowEpisodesBySeasonEpisodeAndMedia( $season, $episode, $media_id ) {
 
         // Open database connection
         $db   = init_db();
 
-        $req  = $db->prepare( "SELECT * FROM show_episode WHERE season=" . $season . " AND episode=" . $episode);
+        $req  = $db->prepare( "SELECT * FROM show_episode WHERE season=" . $season . " AND episode=" . $episode . " AND media_id=" . $media_id);
         $req->execute();
 
-        // Close databse connection
+        // Close database connection
         $db   = null;
 
         return $req->fetch();
 
     }
+
+    /***********************************
+     * -------- GET GENRE BY ID --------
+     ***********************************/
 
     public static function getGenreById( $genre_id ) {
 
@@ -171,7 +191,7 @@ class Media {
         $req  = $db->prepare( "SELECT * FROM genre WHERE id=" . $genre_id);
         $req->execute();
 
-        // Close databse connection
+        // Close database connection
         $db   = null;
 
         return $req->fetch();
