@@ -163,4 +163,18 @@ class Media {
 
     }
 
+    public static function getGenreById( $genre_id ) {
+
+        // Open database connection
+        $db   = init_db();
+
+        $req  = $db->prepare( "SELECT * FROM genre WHERE id=" . $genre_id);
+        $req->execute();
+
+        // Close databse connection
+        $db   = null;
+
+        return $req->fetch();
+    }
+
 }

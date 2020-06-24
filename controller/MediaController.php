@@ -33,6 +33,7 @@ function detailPage( $mediaId ) {
 
     $media = Media::getMediaById($mediaId);
     $episodes = Media::getShowEpisodes($media['id']);
+    $genre = Media::getGenreById($media['genre_id']);
 
     if (isset($_GET['current_play'])):
         $array_season_episode = explode('E', $_GET['current_play']);

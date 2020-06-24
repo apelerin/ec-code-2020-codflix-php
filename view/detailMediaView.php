@@ -3,12 +3,16 @@
 <h3 class="mediaD-title"><?= $media['title']; ?></h3>
 
 <div class="info-media">
+    <div><?= $genre['name']?></div>
     <div><?= $media['type']?></div>
     <div><?= $media['status']?></div>
     <div><?= $media['release_date']?></div>
     <div><?= $media['summary']?></div>
 
     <?php
+    if (isset($_GET['current_play'])):
+        echo '<div><iframe allowfullscreen="" frameborder="0"src="' . $current_episode['stream_url'] . '" ></iframe></div>';
+    endif;
     if ($media['type'] == "Film"):
         if (!isset($_GET['play'])): ?>
             <div class="button_cont" align="center">
@@ -38,9 +42,7 @@
 
         <?php
         endforeach;
-        if (isset($_GET['current_play'])):
-            echo '<div><iframe allowfullscreen="" frameborder="0"src="' . $current_episode['stream_url'] . '" ></iframe></div>';
-        endif;
+
     endif; ?>
 
     </div>
