@@ -37,7 +37,13 @@ function signup( $post ) {
         $user->createUser();
 
         $linkToSend = 'localhost/CodFlix/index.php?action=login&confirmation=' . $user->getEmail() . ':' . $user->getKey();
-        #todo put the email there
+
+        $messageToSend = 'Bienvenue sur CodFlix. Pour activer votre compte cliquez sur ce lien:' . $linkToSend;
+        $subject = 'Confirmation du compte';
+        $header = 'From:codflix@mail.com';
+
+        # Supposed to send a mail.
+        #mail($user->getEmail(), $subject, $messageToSend, $header) ;
 
         header( 'location: index.php ');
     }
