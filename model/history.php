@@ -34,16 +34,17 @@ class History
 
     }
 
-    /******************************************
-     * -------- GET HISTORY BY USER ID --------
-     ******************************************/
+    /************************************************************
+     * -------- GET HISTORY AND RELATED MEDIA BY USER ID --------
+     ************************************************************/
 
     public static function getHistoryByUserId( $user_id ) {
 
         // Open database connection
         $db   = init_db();
 
-        $req  = $db->prepare( "SELECT * FROM history WHERE user_id=" . $user_id );
+        $req  = $db->prepare( "SELECT h.*, m.title, m.type FROM history as h INNER JOIN media as m ON h.media_id = m.id WHERE user_id=" . $user_id
+                                . " ORDER BY h.finish_date");
         $req->execute();
 
         // Close database connection
