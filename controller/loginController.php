@@ -62,10 +62,6 @@ function login( $post ) {
       #$error_msg = "Votre compte n'est pas activé, le lien devrait être localhost/CodFlix/index.php?action=login&confirmation=" . $userData['email'] . ':' . $userData['key'];
   }
 
-
-
-
-
   require('view/auth/loginView.php');
 }
 
