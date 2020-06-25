@@ -231,6 +231,18 @@ INSERT INTO `show_episode` (`id`, `media_id`, `duration`, `summary`, `season`, `
 (3, 4, 650, 'A brave Scottish general named Macbeth receives a prophecy from a trio of witches that one day he will become King of Scotland.', 2, 1, '2020-02-15', 'https://www.youtube.com/embed/HBNGoDZURBE'),
 (4, 4, 450, 'A brave Scottish general named Macbeth receives a prophecy from a trio of witches that one day he will become King of Scotland.', 2, 2, '2019-03-05', 'https://www.youtube.com/embed/4MYpGMx6zUY');
 
+--
+-- Add columns to `user` table for the confirmation by email
+--
+
+ALTER TABLE `user`
+    ADD COLUMN `key` VARCHAR(32) NOT NULL;
+
+ALTER TABLE `user`
+    ADD COLUMN `activated` INT(1) NOT NULL;
+
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

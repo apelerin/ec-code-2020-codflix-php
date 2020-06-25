@@ -19,23 +19,26 @@ function signupPage() {
 
 }
 
-/***************************
+/****************************
 * ----- SIGNUP FUNCTION -----
-***************************/
+*****************************/
 
 function signup( $post ) {
     $data                   = new stdClass();
     $data->email            = $post['email'];
     $data->password         = hash('sha256', $post['password']);
     $data->password_confirm = hash('sha256',$post['password_confirm']);
+    $data->key              = md5(microtime(TRUE)*100000);
+    $data->activated        = 0;
 
     # Check if passwords are matching
     try {
         $user = new User( $data );
         $user->createUser();
 
-        # Todo add a popup to signal the creation of the user
-        # Todo mailing to confirm the account
+        $linkToSend = 'localhost/CodFlix/index.php?action=login&confirmation=' . $user->getEmail() . ':' . $user->getKey();
+        #todo put the email there
+
         header( 'location: index.php ');
     }
     catch (Exception $e) {
