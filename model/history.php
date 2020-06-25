@@ -53,4 +53,17 @@ class History
         return $req->fetchall();
 
     }
+
+    public static function deleteHistoryById( $history_id ) {
+
+        // Open database connection
+        $db   = init_db();
+
+        $req  = $db->prepare( "DELETE FROM history WHERE id =" . $history_id);
+        $req->execute();
+
+        // Close database connection
+        $db   = null;
+
+    }
 }
