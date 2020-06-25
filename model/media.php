@@ -88,12 +88,13 @@ class Media {
   * -------- GET FILTERED MEDIAS --------
   ***************************************/
 
-  public static function filterMedias( $title ) {
+  public static function filterMedias( $regex ) {
 
     // Open database connection
     $db   = init_db();
 
-    $req  = $db->prepare( "SELECT * FROM media WHERE title='" . $title . "' ORDER BY release_date DESC" );
+    # Put the regex in capitalized form to ignore case.
+    $req  = $db->prepare( "SELECT * FROM media WHERE UPPER(title) like UPPER('" . $regex . "') ORDER BY release_date DESC" );
     $req->execute();
 
     // Close database connection

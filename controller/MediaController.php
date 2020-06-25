@@ -9,12 +9,21 @@ require_once( 'model/history.php' );
 
 function mediaPage() {
     $search = null;
+
+    # Redirect to the detailed media page
     if (isset( $_GET['media'] )):
         detailPage($_GET['media']);
     else:
-        # Todo, get this filterMedias to work
+        # This will create a regex understandable for a SQL request in case of a search
+        # Currently the search system is:
+        # If research of 3 or less characters, we will search at the begin of the title, in another case we will search
+        # anywhere in the title.
         if (isset( $_GET['title'] )):
-            $search = $_GET['title'];
+            if (strlen($_GET['title']) < 4):
+                $search = $_GET['title'] . "%";
+            else:
+                $search = "%" . $_GET['title'] . "%";
+            endif;
             $medias = Media::filterMedias( $search );
         else:
             $medias = Media::getAllMedia();
