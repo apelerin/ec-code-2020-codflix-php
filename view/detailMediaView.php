@@ -19,14 +19,13 @@
         if (!isset($_GET['play'])): ?>
             <div class="button_cont" align="center">
                 <a class="button_play" href="index.php?media=<?= $media['id']; ?>&play=true">
-                    <span>Trailer
+                    <span>Play
                 </a>
             </div>
         <?php
         else:
-            echo '<div>';
-            echo '<iframe allowfullscreen="" frameborder="0"src="' . $media['trailer_url'] . '" ></iframe>';
-            echo '<a class="button_play" href="index.php?media=' . $media['id'] . '"><span>Stop</a>';
+            echo '<div class="embed-responsive embed-responsive-21by9 wrapper-buttonflix">';
+            echo '<iframe class="embed-responsive-item" allowfullscreen="" frameborder="0"src="' . $media['trailer_url'] . '" ></iframe>';
         endif;
     else:
         foreach ($episodes as $episode):
