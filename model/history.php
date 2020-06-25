@@ -1,13 +1,17 @@
 <?php
 
 
-class history
+class History
 {
 
     /***************************************
      * -------- CREATE NEW HISTORY ---------
      ***************************************/
 
+    # This method create an entry in database when called. It does not handle season and episode for now, just the media in itself.
+
+    # The start and finish time are not handle. The finish time is determined by the `time()` method, and the starting time is a random
+    # number between 25 and 150 in seconds before that to get various durations.
     public static function createHistory( $user_id, $media_id ) {
 
         $finish_date = time();
@@ -15,7 +19,8 @@ class history
         // Open database connection
         $db   = init_db();
 
-        $req  = $db->prepare( "INSERT INTO history ( user_id, media_id, start_date, finish_date, watch_duration ) VALUES ( :user_id, :media_id, :start_date, :finish_date, :watch_duration )" );
+        $req  = $db->prepare( "INSERT INTO history ( user_id, media_id, start_date, finish_date, watch_duration ) 
+            VALUES ( :user_id, :media_id, FROM_UNIXTIME(:start_date), FROM_UNIXTIME(:finish_date), :watch_duration )" );
         $req->execute( array(
             'user_id'         => $user_id,
             'media_id'        => $media_id,
